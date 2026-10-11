@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#10151b">
+<title>Eldervale: The Shattered Crown</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand"><span class="sigil">✦</span><div><strong>ELDERVALE</strong><small>THE SHATTERED CROWN</small></div></div>
+    <div class="top-stats"><span id="clock">Day 1 · 08:00</span><span id="weather">Clear</span><button id="soundToggle" class="icon-button" aria-label="Toggle sound">♫</button></div>
+  </header>
+  <main class="layout">
+    <section class="game-column">
+      <div class="scene-wrap">
+        <canvas id="game" width="960" height="600" aria-label="Eldervale game world"></canvas>
+        <div class="scene-label"><span id="regionName">Whisperwood Outskirts</span><span id="objectiveText">Speak with Mira at the camp</span></div>
+        <div class="mini-map-panel"><div class="panel-heading">WORLD MAP <span>▲ NORTH</span></div><canvas id="minimap" width="180" height="150"></canvas><div id="mapLegend">● You　◆ Quest　■ Landmark</div></div>
+        <div id="toast" class="toast" role="status"></div>
+        <div class="touch-controls" aria-label="Touch controls">
+          <div class="dpad"><button data-move="up" aria-label="Move up">▲</button><div><button data-move="left" aria-label="Move left">◀</button><button data-move="down" aria-label="Move down">▼</button><button data-move="right" aria-label="Move right">▶</button></div></div>
+          <div class="action-pad"><button id="attackBtn" class="action attack">ATTACK</button><button id="dodgeBtn" class="action">DODGE</button><button id="spellBtn" class="action spell">SPELL</button><button id="interactBtn" class="action interact">INTERACT</button></div>
+        </div>
+      </div>
+      <div class="mobile-tip">Touch the arrows to move · Tap objects/NPCs or use INTERACT · Keyboard: WASD/arrows, Space attack, Q spell, E interact, Shift dodge</div>
+      <div class="quickbar" id="quickbar"></div>
+    </section>
+    <aside class="sidebar">
+      <section class="character-card">
+        <div class="character-top"><div class="portrait" id="portrait">✧</div><div class="character-info"><h2 id="heroName">Wayfarer</h2><p id="heroMeta">Human · Spellblade · Level 1</p><div class="xp-track"><div id="xpFill"></div></div><small id="xpText">0 / 100 XP</small></div></div>
+        <div class="vitals"><div><label>HEALTH</label><div class="meter health"><span id="healthFill"></span></div><small id="healthText">100 / 100</small></div><div><label>MANA</label><div class="meter mana"><span id="manaFill"></span></div><small id="manaText">40 / 40</small></div><div><label>STAMINA</label><div class="meter stamina"><span id="staminaFill"></span></div><small id="staminaText">100 / 100</small></div></div>
+        <div class="currency"><span>◈ <b id="goldText">25</b> Crowns</span><span>⚔ <b id="powerText">8</b> Power</span></div>
+      </section>
+      <nav class="tabs" aria-label="Game menus">
+        <button class="tab active" data-tab="character">Hero</button><button class="tab" data-tab="inventory">Bag</button><button class="tab" data-tab="quests">Quests</button><button class="tab" data-tab="crafting">Craft</button><button class="tab" data-tab="lore">Journal</button>
+      </nav>
+      <section class="menu-panel" id="menuPanel"></section>
+      <section class="dialogue-panel" id="dialoguePanel"><div class="dialogue-heading">FIELD NOTES</div><p id="dialogueText">The wind carries a whisper from the old road. Your story begins here.</p><button id="dialogueContinue" class="gold-button">Continue</button></section>
+    </aside>
+  </main>
+  <footer><span>EARLY PLAYABLE FOUNDATION · v0.1</span><span>Autosaves in this browser</span><button id="saveBtn">Save now</button><button id="resetBtn">New adventure</button></footer>
+</div>
+<div id="creationModal" class="modal visible">
+  <div class="modal-card creation-card">
+    <div class="brand big"><span class="sigil">✦</span><div><strong>ELDERVALE</strong><small>THE SHATTERED CROWN</small></div></div>
+    <p class="eyebrow">A WORLD WAITING TO BE REWRITTEN</p>
+    <h1>Create your adventurer</h1>
+    <p class="muted">Your ancestry and calling shape your strengths. Hybrid callings unlock as you grow.</p>
+    <label>Character name<input id="nameInput" maxlength="18" value="Wayfarer" /></label>
+    <div class="form-grid"><label>Race<select id="raceSelect"></select></label><label>Class<select id="classSelect"></select></label></div>
+    <div id="creationDescription" class="description-box"></div>
+    <button id="beginBtn" class="gold-button full">Enter Eldervale</button>
+    <p class="fine-print">This is a playable foundation. The world, quests, and systems are designed to expand in later releases.</p>
+  </div>
+</div>
+<div id="modal" class="modal"><div class="modal-card"><button id="closeModal" class="close">×</button><div id="modalContent"></div></div></div>
+<script src="game.js"></script>
+</body>
+</html>
